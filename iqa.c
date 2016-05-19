@@ -24,11 +24,21 @@ double calcPH(double pH){
 
 	double A = 0.05421;
 	double B = 1.23;
-	double C = -0.01101;
-
+	double C = -0.09873;
 	double x = (B * pH) + (C * pow(pH,2));
 
 	double q2 = (A * pow(pH,x)) + 5.213;
+
+
+	if(pH > 12){
+		q2 = 3;
+
+	}
+	if(pH < 2){
+		q2 = 2;
+	}
+
+
 
 	return q2;
 }
@@ -39,7 +49,10 @@ double calcDBO(double DBO)
 	double const B = -0.1101;
 	
 	double x = B * DBO;
-	double q3 = A * exp(B*DBO);
+	double q3 = A * exp(x);
+	if (DBO > 30){
+		q3 = 2;
+	}
 // Mesmo erro do FT q5!
 	
 	return q3;
@@ -54,6 +67,11 @@ double calcNT(double NT)
 	double x = B + (C * NT);
 	double q4 = A * pow(NT, x);
 
+	if(NT > 100){
+		q4 = 1;
+
+	}
+
 	return q4;
 }
 
@@ -66,6 +84,11 @@ double calcFt (double FT){
 	double x = b * pow(FT, c);
 
 	double q5 = a * exp(x); 
+
+	if (FT > 10){
+
+		q5 = 1;
+	}
 	
 	return q5;
 }
@@ -78,6 +101,14 @@ double calcDt(double DT){
 
 	double x = A * pow((DT + B), 2) + C;
 	double q6 = 1 / x;
+
+	if(DT <= 5){
+		q6 = 1;
+	}
+	if (DT > 15){
+
+		q6 = 9;
+	}
 
 	return q6;
 
@@ -93,6 +124,11 @@ double calcTu (double TU){
 
 	double q7 = A * exp(x);
 
+	if (TU > 100){
+
+		q7 = 5;
+	}
+
 	return q7;
 
 }
@@ -107,6 +143,9 @@ double calcST (double ST){
 	double x = (B * ST) + (C * sqrt(ST));
 
 	double q8 = (A * exp(x)) + (D * ST); 
+	if(ST > 500){
+		q8 = 32;
+	}
 
 	return q8;
 }
@@ -120,6 +159,9 @@ double calcOxigenio(double Oxigenio)
 	double x = pow((Oxigenio + B), 2)/C;
 
 	double q9 = A * exp(x);
+	if(Oxigenio == 140){
+		q9 = 47;
+	}
 
 	return q9;
 }
