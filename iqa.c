@@ -9,7 +9,12 @@ double calcColiformes(double CF)
 	double const C = 3.138;
 	double const D = 0.06776;
 	
-	double q1 = A + (B * log(CF)) + (C * log(pow(CF,2))) + (D * log(pow(CF, 3)));
+	if (CF<pow(10,5){
+		double q1 = A + (B * log(CF)) + (C * log(pow(CF,2))) + (D * log(pow(CF, 3)));
+	}else{
+		q1 = 3.0;
+
+	}
 	
 	return q1;
 }
@@ -30,7 +35,7 @@ double calcPH(double pH){
 double calcDBO(double DBO)
 {
 	double const A = 102.6;
-	double const B = -0.01101;
+	double const B = -0.1101;
 	
 	double x = B * DBO;
 	double q3 = A * exp(B*DBO);
@@ -59,7 +64,7 @@ double calcFt (double FT){
 
 	double x = b * pow(FT, c);
 
-	double q5 = a * exp(x); // Eu acho que isso está errado. Compare com o q9 e o q8. É diferente.
+	double q5 = a * exp(x); 
 	
 	return q5;
 }
@@ -100,7 +105,7 @@ double calcST (double ST){
 
 	double x = (B * ST) + (C * sqrt(ST));
 
-	double q8 = (A * exp(x)) + (D * ST); // repara nesse exp. se fizermos assim esse e o q5 assumem o mesmo calculo. 
+	double q8 = (A * exp(x)) + (D * ST); 
 
 	return q8;
 }
