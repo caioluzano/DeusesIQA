@@ -1,13 +1,12 @@
-double calcDt(double k){
+double calcDt(double DT){
 
-	double const a = 0.0003869;
-	double const b = 0.1815;
-	double const c = 0.01081;
+	double const A = 0.0003869;
+	double const B = 0.1815;
+	double const C = 0.01081;
 
-	double x = a * pow((k + b), 2) + c;
+	double x = A * pow((DT + B), 2) + C;
 	double q6 = 1 / x;
 
 	return q6;
-
 
 }

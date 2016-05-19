@@ -1,10 +1,12 @@
-double calcTu (double tu){
+double calcTu (double TU){
 
-	double const a = 97.34;
-	double const b = -0.01139;
-	double const c = -0.04917;
+	double const A = 97.34;
+	double const B = -0.01139;
+	double const C = -0.04917;
 
-	double q7 = A*exp((B*tu)+(c*(sqrt(tu)));
+	double x = (B * TU) + (C * sqrt(TU));
+
+	double q7 = A * exp(x);
 
 	return q7;
 
