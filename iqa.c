@@ -24,6 +24,8 @@ double calcColiformes(double CF)
 
 double calcPH(double pH){
 
+	double q2;
+
 	if(pH <= 2){
 		q2 = 2;
 	}
@@ -134,16 +136,13 @@ double calcTu (double TU){
 
 double calcST (double ST){
 	
-	double A = 80.26;
-	double B = -0.00107;
-	double C = -0.03009; 
-	double D = -0.1185;
+	double q8;
 
-	double x = (B * ST) + (C * sqrt(ST));
-
-	double q8 = (A * exp(x)) + (D * ST); 
+	if(ST <= 500){
+		q8 = 133.17 * pow(e, -0.0027 * ST) - 53.17 * pow(e, -0.0141 * ST) + ((-6.2 * pow(e, -0.00462 * ST) * sin(0.0146 * ST)));
+	}
 	if(ST > 500){
-		q8 = 32;
+		q8 = 30;
 	}
 
 	return q8;
