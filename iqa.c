@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "TU.h"
-#include "Oxigenio.h"
+#include "Oxigenxio.h"
 #include "ST.h"
 #include "DT.h"
 #include "FT.h"
@@ -13,21 +13,6 @@
 
 #define PI 3.14159265359
 #define e 2.718281828459045
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 int main(void)
@@ -43,7 +28,7 @@ int main(void)
  	q5 = calcFt(q5);
  	q6 = calcDt(q6);
  	q7 = calcTu(q7);
- 	q8 = calcOxigenio(q8);
+ 	q8 = calcOxigenio(q8, q6);
  	q9 = calcST(q9);
 
  	iqa = (pow(q1,0.15)*pow(q2,0.12)*pow(q3,0.10)*pow(q4,0.10)*pow(q5,0.10)*pow(q6,0.10)*pow(q7,0.08)*pow(q8,0.17)*pow(q9,0.08));
