@@ -1,15 +1,18 @@
 double calcNT(double NT)
 {
-	double const A = 98.96;
-	double const B = -0.2232; 
-	double const C = -0.006457;
-
-	double x = B + (C * NT);
-	double q4 = A * pow(NT, x);
-
-	if(NT > 100){
+	double q4;
+	
+	if(NT<=10){
+		q4=-5.1*NT+100.17;
+	}
+	if(NT>10 && NT<=60){
+		q4=-22.853*ln(NT)+101.18;
+	}
+	if(NT > 60 && NT <= 90){
+		q4 = 10000000000 * pow(NT,-5.1161);
+	}
+	if(NT > 90){
 		q4 = 1;
-
 	}
 
 	return q4;
