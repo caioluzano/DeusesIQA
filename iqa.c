@@ -24,24 +24,21 @@ double calcColiformes(double CF)
 
 double calcPH(double pH){
 
-	double A = 0.05421;
-	double B = 1.23;
-	double C = -0.09873;
-	double x = (B * pH) + (C * pow(pH,2));
-
-	double q2 = (A * pow(pH,x)) + 5.213;
-
-
-	if(pH > 12){
-		q2 = 3;
-
-	}
-	if(pH < 2){
+	if(pH <= 2){
 		q2 = 2;
 	}
-
-
-
+	if(pH > 2 && pH <= 6.9){
+		q2 = -37.1085 + 41.91277 * pH -15.7043 * pow(pH,2) + 2.417486 * pow(pH, 3) - 0.091252 * pow(pH, 4);
+	}
+	if(pH > 6.9 && pH <= 7.1){
+		q2 = -4.69365 - 21.4593 * pH - 68.4561 * pow(pH, 2) + 21.638886 * pow(pH, 3) - 1.59165 * pow(pH, 4);
+	}
+	if(pH > 7.1 && pH <= 12){
+		q2 = -7698.19 + 3262.031 * pH - 499.494 * pow(pH, 2) + 33.1551 * pow(pH, 3) - 0.810613 * pow(pH, 4);
+	}
+	if(pH >= 12){
+		q2 = 3;
+	}
 	return q2;
 }
 
@@ -175,7 +172,7 @@ double calcOxigenio(double Oxigenio)
 		q9 = 100 * pow(sin(y1), 2) - (2.5 * sin(y2) - 0.018 * Oxigenio + 6.86 * sin(y3)) + (12 / pow(e, y4) + pow(e, y5));
 
 	}
-	if(Oxigenio <= 140){
+	if(Oxigenio <= 140 && Oxigenio > 100){
 		q9 = -0.00777142857142832 * pow(Oxigenio, 2) + 1.27854285714278 * Oxigenio + 49.8817148572;
 	}
 	return q9;
