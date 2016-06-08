@@ -1,15 +1,13 @@
+#define e 2.718281828459045
+
 double calcTu (double TU){
 
-	double const A = 97.34;
-	double const B = -0.01139;
-	double const C = -0.04917;
+	double q7;
 
-	double x = (B * TU) + (C * sqrt(TU));
-
-	double q7 = A * exp(x);
-
-	if (TU > 100){
-
+	if(TU <= 100){
+		q7 = 90.37 * pow(e, -0.0169 * TU) - 15 * cos(0.0571 *(TU - 30)) + 10.22 * pow(e, -0.231 * TU) - 0.8;
+	}
+	if(TU > 100){
 		q7 = 5;
 	}
 
