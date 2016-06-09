@@ -1,6 +1,28 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 
+void entry_reset(GtkButton *buttonReset, GObject *object_entry){
+    GtkEntry *data_entry1 = g_object_get_data (object_entry, "entry1");
+    GtkEntry *data_entry2 = g_object_get_data (object_entry, "entry2");
+    GtkEntry *data_entry3 = g_object_get_data (object_entry, "entry3");
+    GtkEntry *data_entry4 = g_object_get_data (object_entry, "entry4");
+    GtkEntry *data_entry5 = g_object_get_data (object_entry, "entry5");
+    GtkEntry *data_entry6 = g_object_get_data (object_entry, "entry6");
+    GtkEntry *data_entry7 = g_object_get_data (object_entry, "entry7");
+    GtkEntry *data_entry8 = g_object_get_data (object_entry, "entry8");
+    GtkEntry *data_entry9 = g_object_get_data (object_entry, "entry9");
+
+    gtk_entry_set_text(GTK_ENTRY(data_entry1), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry2), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry3), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry4), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry5), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry6), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry7), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry8), "");
+    gtk_entry_set_text(GTK_ENTRY(data_entry9), "");
+}
+
 double btn_click (GtkButton *button, GObject *object_entry) {
 
     GtkEntry *data_entry1 = g_object_get_data (object_entry, "entry1");
@@ -89,6 +111,19 @@ int main(int argc, char *argv[])
     g_object_set_data(G_OBJECT(button), "entry9", entry9);
     g_signal_connect(GTK_BUTTON(button), "clicked", G_CALLBACK(btn_click), button);
 
+    //Button Reset
+    buttonReset = gtk_button_new_with_mnemonic("_Reset");
+    g_object_set_data(G_OBJECT(buttonReset), "entry1", entry1);
+    g_object_set_data(G_OBJECT(buttonReset), "entry2", entry2);
+    g_object_set_data(G_OBJECT(buttonReset), "entry3", entry3);
+    g_object_set_data(G_OBJECT(buttonReset), "entry4", entry4);
+    g_object_set_data(G_OBJECT(buttonReset), "entry5", entry5);
+    g_object_set_data(G_OBJECT(buttonReset), "entry6", entry6);
+    g_object_set_data(G_OBJECT(buttonReset), "entry7", entry7);
+    g_object_set_data(G_OBJECT(buttonReset), "entry8", entry8);
+    g_object_set_data(G_OBJECT(buttonReset), "entry9", entry9);
+    g_signal_connect(GTK_BUTTON(buttonReset), "clicked", G_CALLBACK(entry_reset), buttonReset);
+
     //Grid
     grid = gtk_grid_new();
     gtk_grid_set_column_spacing(GTK_GRID(grid), 20);
@@ -113,6 +148,7 @@ int main(int argc, char *argv[])
     gtk_grid_attach(GTK_GRID(grid), label9, 1, 8, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), entry9, 2, 8, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), button, 2, 9, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), buttonReset, 1, 9, 1, 1);
 
     gtk_container_add(GTK_CONTAINER(window), grid);
     gtk_widget_show_all(window);
