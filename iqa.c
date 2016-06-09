@@ -12,7 +12,7 @@
 
 
 #define PI 3.14159265359
-#define e 2.718281828459045
+#define e 2.71828182845904523536
 
 
 int main(void)
