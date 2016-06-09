@@ -8,6 +8,8 @@ double calcOxigenio(double Oxigenio, double bunda){
 
 	double od = (Oxigenio / cs) * 100;
 	
+	printf("temperatura: %lf\n", bunda);
+
 	if(od <= 100){
 		double y1 = 0.01396 * od + 0.0873;
 		double y2 = (PI / 56) * (od - 27.0);
