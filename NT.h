@@ -5,14 +5,14 @@ double calcNT(double NT)
 	if(NT<=10){
 		q4=-5.1*NT+100.17;
 	}
-	if(NT>10 && NT<=60){
+	else if(NT<=60){
 		q4=-22.853*log(NT)+101.18;
 	}
-	if(NT > 60 && NT <= 90){
-		q4 = 10000000000 * pow(NT,-5.1161);
+	else if(NT <= 90){
+		q4 = pow(10,9) * pow(NT,-5.1161);
 	}
-	if(NT > 90){
-		q4 = 1;
+	else{
+		q4 = 1.0;
 	}
 
 	return q4;

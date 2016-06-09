@@ -4,9 +4,9 @@ double calcFt (double FT){
 
 	if (FT <= 10)
 	{
-		q5 = 79.7 * pow((FT + 0.821),-1.15);
+		q5 = 79.7 * pow(FT + 0.821,-1.15);
 	}
-	if (FT > 10){
+	else if (FT > 10){
 
 		q5 = 5;
 	}

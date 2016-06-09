@@ -33,5 +33,7 @@ int main(void)
 
  	iqa = (pow(q1,0.15)*pow(q2,0.12)*pow(q3,0.10)*pow(q4,0.10)*pow(q5,0.10)*pow(q6,0.10)*pow(q7,0.08)*pow(q8,0.17)*pow(q9,0.08));
  	printf("%.10lf\n",iqa);
+
+ 	return 0;
  	
 }
