@@ -1,160 +1,97 @@
-#include <gtk/gtk.h>
-#include <stdlib.h>
-#include "novo.h"
+#include <stdio.h>
+#include <math.h>
+#include "TU.h"
+#include "Oxigenxio.h"
+#include "ST.h"
+#include "DT.h"
+#include "FT.h"
+#include "NT.h"
+#include "DBO.h"
+#include "pH.h"
+#include "coliformes.h"
 
-void entry_reset(GtkButton *buttonReset, GObject *object_entry){
-    GtkEntry *data_entry1 = g_object_get_data (object_entry, "entry1");
-    GtkEntry *data_entry2 = g_object_get_data (object_entry, "entry2");
-    GtkEntry *data_entry3 = g_object_get_data (object_entry, "entry3");
-    GtkEntry *data_entry4 = g_object_get_data (object_entry, "entry4");
-    GtkEntry *data_entry5 = g_object_get_data (object_entry, "entry5");
-    GtkEntry *data_entry6 = g_object_get_data (object_entry, "entry6");
-    GtkEntry *data_entry7 = g_object_get_data (object_entry, "entry7");
-    GtkEntry *data_entry8 = g_object_get_data (object_entry, "entry8");
-    GtkEntry *data_entry9 = g_object_get_data (object_entry, "entry9");
 
-    gtk_entry_set_text(GTK_ENTRY(data_entry1), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry2), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry3), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry4), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry5), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry6), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry7), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry8), "");
-    gtk_entry_set_text(GTK_ENTRY(data_entry9), "");
-}
+#define PI 3.14159265359
+#define e 2.71828182845904523536
 
-double btn_click (GtkButton *button, GObject *object_entry) {
 
-    GtkEntry *data_entry1 = g_object_get_data (object_entry, "entry1");
-    GtkEntry *data_entry2 = g_object_get_data (object_entry, "entry2");
-    GtkEntry *data_entry3 = g_object_get_data (object_entry, "entry3");
-    GtkEntry *data_entry4 = g_object_get_data (object_entry, "entry4");
-    GtkEntry *data_entry5 = g_object_get_data (object_entry, "entry5");
-    GtkEntry *data_entry6 = g_object_get_data (object_entry, "entry6");
-    GtkEntry *data_entry7 = g_object_get_data (object_entry, "entry7");
-    GtkEntry *data_entry8 = g_object_get_data (object_entry, "entry8");
-    GtkEntry *data_entry9 = g_object_get_data (object_entry, "entry9");
-
-    const char *get_data_entry1 = gtk_entry_get_text (data_entry1);
-    const char *get_data_entry2 = gtk_entry_get_text (data_entry2);
-    const char *get_data_entry3 = gtk_entry_get_text (data_entry3);
-    const char *get_data_entry4 = gtk_entry_get_text (data_entry4);
-    const char *get_data_entry5 = gtk_entry_get_text (data_entry5);
-    const char *get_data_entry6 = gtk_entry_get_text (data_entry6);
-    const char *get_data_entry7 = gtk_entry_get_text (data_entry7);
-    const char *get_data_entry8 = gtk_entry_get_text (data_entry8);
-    const char *get_data_entry9 = gtk_entry_get_text (data_entry9);
-
-    double q1 = atof(get_data_entry1);
-    double q2 = atof(get_data_entry2);
-    double q3 = atof(get_data_entry3);
-    double q4 = atof(get_data_entry4);
-    double q5 = atof(get_data_entry5);
-    double q6 = atof(get_data_entry6);
-    double q7 = atof(get_data_entry7);
-    double q8 = atof(get_data_entry8);
-    double q9 = atof(get_data_entry9);
-    
-    double result = iqa(q1, q2, q3, q4, q5, q6, q7, q8, q9);
-
-    return result;
-}
-
-int main(int argc, char *argv[])
+int main(void)
 {
-    gtk_init(&argc, &argv);
+ 	double q1,q2,q3,q4,q5,q6,q7,q8,q9,temperatura,iqa;
+ 	
+ 	
+ 	printf("Oxigenio Dissolvido:\n");
+ 	scanf("%lf",&q8);
+ 	printf("Coliformes:\n");
+ 	scanf("%lf",&q1);
+	printf("PH:\n");
+ 	scanf("%lf",&q2);
+	printf("DBO:\n");
+ 	scanf("%lf",&q3);
+ 	printf("Temperatura da água:\n");
+ 	scanf("%lf",&q6);
+ 	temperatura = q6;
+	printf("Nitrogênio Total:\n");
+ 	scanf("%lf",&q4);
+	printf("Fósforo Total:\n");
+ 	scanf("%lf",&q5);
+	printf("Turbidez:\n");
+ 	scanf("%lf",&q7);
+ 	printf("Solidos totais:\n");
+ 	scanf("%lf",&q9);
 
-    GtkWidget *window;
-    GtkWidget *grid;
-    GtkWidget *label1, *label2, *label3, *label4, *label5, *label6, *label7, *label8, *label9, *spcLabel, *resultLabel, *qLabel;
-    GtkWidget *entry1, *entry2, *entry3, *entry4, *entry5, *entry6, *entry7, *entry8, *entry9;
-    GtkWidget *button, *buttonReset;
+ 	q1 = calcColiformes(q1);
+ 	printf("q1: %lf\n", q1);
 
-    GObject *object_entry;
+ 	
+ 	q2 = calcPH(q2);
+ 	printf("q2: %lf\n", q2);
 
-    //Window
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    g_signal_connect(window, "delete-event", G_CALLBACK(gtk_main_quit), NULL);
+ 	
+ 	q3 = calcDBO(q3);
+ 	printf("q3: %lf\n", q3);
 
-    //Label
-    label1 = gtk_label_new("Coliformes Fecais (NMP/100ml)");
-    label2 = gtk_label_new("pH (unidades de ph)");
-    label3 = gtk_label_new("DBO (mg/L)");
-    label4 = gtk_label_new("Nitrogenio Total (mg/L)");
-    label5 = gtk_label_new("Fosforo total (mg/L)");
-    label6 = gtk_label_new("Temperatura");
-    label7 = gtk_label_new("Turbidez (UNT)");
-    label8 = gtk_label_new("Solidos totais mg/L");
-    label9 = gtk_label_new("OD (%% saturacao)");
-    spcLabel = gtk_label_new("");
+ 	
+ 	q4 = calcNT(q4);
+ 	printf("q4: %lf\n", q4);
 
-    //Entry
-    entry1 = gtk_entry_new();
-    entry2 = gtk_entry_new();
-    entry3 = gtk_entry_new();
-    entry4 = gtk_entry_new();
-    entry5 = gtk_entry_new();
-    entry6 = gtk_entry_new();
-    entry7 = gtk_entry_new();
-    entry8 = gtk_entry_new();
-    entry9 = gtk_entry_new();
+ 	
+ 	q5 = calcFt(q5);
+ 	printf("q5: %lf\n", q5);
 
-    //Button
-    button = gtk_button_new_with_mnemonic("_Calcular");
-    g_object_set_data(G_OBJECT(button), "entry1", entry1);
-    g_object_set_data(G_OBJECT(button), "entry2", entry2);
-    g_object_set_data(G_OBJECT(button), "entry3", entry3);
-    g_object_set_data(G_OBJECT(button), "entry4", entry4);
-    g_object_set_data(G_OBJECT(button), "entry5", entry5);
-    g_object_set_data(G_OBJECT(button), "entry6", entry6);
-    g_object_set_data(G_OBJECT(button), "entry7", entry7);
-    g_object_set_data(G_OBJECT(button), "entry8", entry8);
-    g_object_set_data(G_OBJECT(button), "entry9", entry9);
-    g_signal_connect(GTK_BUTTON(button), "clicked", G_CALLBACK(btn_click), button);
+ 	
+ 	q6 = calcDt(q6);
+ 	printf("q6: %lf\n", q6);
 
-    //Button Reset
-    buttonReset = gtk_button_new_with_mnemonic("_Reset");
-    g_object_set_data(G_OBJECT(buttonReset), "entry1", entry1);
-    g_object_set_data(G_OBJECT(buttonReset), "entry2", entry2);
-    g_object_set_data(G_OBJECT(buttonReset), "entry3", entry3);
-    g_object_set_data(G_OBJECT(buttonReset), "entry4", entry4);
-    g_object_set_data(G_OBJECT(buttonReset), "entry5", entry5);
-    g_object_set_data(G_OBJECT(buttonReset), "entry6", entry6);
-    g_object_set_data(G_OBJECT(buttonReset), "entry7", entry7);
-    g_object_set_data(G_OBJECT(buttonReset), "entry8", entry8);
-    g_object_set_data(G_OBJECT(buttonReset), "entry9", entry9);
-    g_signal_connect(GTK_BUTTON(buttonReset), "clicked", G_CALLBACK(entry_reset), buttonReset);
+ 	
+ 	q7 = calcTu(q7);
+ 	printf("q7: %lf\n", q7);
 
-    //Grid
-    grid = gtk_grid_new();
-    gtk_grid_set_column_spacing(GTK_GRID(grid), 20);
-    gtk_grid_set_row_spacing(GTK_GRID(grid), 5);
-    gtk_grid_attach(GTK_GRID(grid), spcLabel, 0, 9, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label1, 1, 0, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry1, 2, 0, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label2, 1, 1, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry2, 2, 1, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label3, 1, 2, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry3, 2, 2, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label4, 1, 3, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry4, 2, 3, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label5, 1, 4, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry5, 2, 4, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label6, 1, 5, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry6, 2, 5, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label7, 1, 6, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry7, 2, 6, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label8, 1, 7, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry8, 2, 7, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), label9, 1, 8, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), entry9, 2, 8, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), button, 2, 9, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), buttonReset, 1, 9, 1, 1);
+ 	
+ 	q8 = calcOxigenio(q8, temperatura);
+ 	printf("q8: %lf\n", q8);
 
-    gtk_container_add(GTK_CONTAINER(window), grid);
-    gtk_widget_show_all(window);
-    gtk_main();
+ 	
+ 	q9 = calcST(q9);
+ 	printf("q9: %lf\n", q9);
 
-    return 0;
+ 	iqa = (pow(q1,0.15)*pow(q2,0.12)*pow(q3,0.10)*pow(q4,0.10)*pow(q5,0.10)*pow(q6,0.10)*pow(q7,0.08)*pow(q8,0.17)*pow(q9,0.08));
+ 	printf("IQA: %.10lf\n",iqa);
+
+
+
+
+ 	if(iqa <= 100 && iqa > 90)
+ 		printf("Nível de Qualidade: Excelente\n");
+ 	else if(iqa <= 90 && iqa > 70)
+ 		printf("Nível de Qualidade: Bom\n");
+ 	else if(iqa <= 70 && iqa > 50)
+ 		printf("Nível de Qualidade: Médio\n");
+ 	else if(iqa <= 50 && iqa > 25)
+ 		printf("Nível de Qualidade: Ruim\n");
+ 	else if(iqa <= 25 && iqa >= 0)
+ 		printf("Nível de Qualidade: Muito Ruim\n");
+
+ 	return 0;
+ 	
 }
